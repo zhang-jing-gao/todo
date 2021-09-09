@@ -1,22 +1,21 @@
 <template>
   <div id="app">
-    <n-layout>
-      <n-layout-header>
-        <h1>mini TO-DO</h1>
-        <n-button-group>
-          <n-button round @click="toMain"> 主页 </n-button>
-          <n-button round @click="toArchive"> 归档页 </n-button>
-        </n-button-group>
-      </n-layout-header>
-      <n-layout-content>
-        <router-view />
-      </n-layout-content>
+    <n-layout><!--布局-->
+    <n-layout-header><!--布局头部-->
+     <h1>mini TO-DO</h1>
+     <n-button-group>
+      <n-button round @click="toMain" ghost >主页</n-button>
+      <n-button round @click="toArchive" ghost>归档页</n-button>
+     </n-button-group>
+    </n-layout-header>
+    <n-layout-content><!--布局正文--->
+  <router-view/>
+    </n-layout-content>
     </n-layout>
   </div>
 </template>
-
 <script setup>
-import {
+import{
   NLayout,
   NLayoutHeader,
   NLayoutContent,
@@ -25,11 +24,9 @@ import {
   NH1,
   NButton,
   NButtonGroup,
-} from "naive-ui";
+} from "naive-ui"
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-import { onMounted, onBeforeUnmount } from "vue";
-
 const router = useRouter();
 const store = useStore();
 
@@ -40,39 +37,25 @@ const toArchive = () => {
   router.push({ path: "/archive" });
 };
 
-onMounted(() => {
-  let myData = localStorage.getItem("myData");
-  if (myData) {
-    let list = JSON.parse(myData);
-    store.commit("updateTasks", list);
-  }
-});
-
-window.onbeforeunload = (event) => {
-  let list = store.state.list;
-  localStorage.setItem("myData", JSON.stringify(list));
-};
 </script>
 
-
-
 <style lang="postcss" scoped>
-#app {
+#app{
   background: #f5f5f5;
-
-  & .n-layout-header {
+  width:500px;
+  height:200px;
+  margin:100px auto;
+  & .n-layout-header{
     text-align: center;
-    border-bottom: 1px solid #e6e6e6;
+    border-bottom:1px solid #e6e6e6
   }
-
-  & .n-layout-content {
-    margin: auto;
-    padding: 16px;
-    max-width: 380px;
+  & .n-layout-content{
+   margin: auto;
+   padding:16px;
+   max-width:380px;
   }
-
-  & .n-button {
-    margin: 5px;
+  &.n-button{
+    margin:5px;
   }
 }
 </style>

@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmit, ref } from "vue";
+import {defineEmits,defineProps,ref } from "vue";
 import "swiper/swiper.min.css";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { DragIndicatorOutlined } from "@vicons/material";
@@ -32,7 +32,7 @@ const props = defineProps({
   taskIndex: Number,
 });
 
-const emit = defineEmit(["InComplete"]);
+const emit = defineEmits(["InComplete"]);
 
 const onActiveIndexChange = (instance) => {
   const { activeIndex } = instance;

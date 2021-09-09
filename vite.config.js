@@ -27,8 +27,12 @@ export default defineConfig({
         ],
       },
       workbox: {},
+     
     }),
   ],
+  server:{
+    host:`0.0.0.0`
+  },
 
   //样式表插件
   css: {
